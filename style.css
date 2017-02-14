@@ -1,0 +1,106 @@
+* {
+    margin: 0;
+    padding: 0;
+  	-moz-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+body{
+    background-image:url("assets/background.png");
+}
+#title{
+    font-family:'Press Start 2P', cursive;
+    font-size:35px;
+    margin-left:2px;
+    margin-top:2px;
+}
+#background{
+    border:10px teal groove;
+    margin-top:7px;
+    margin-left:auto;
+    margin-right:auto;
+    text-align:center;
+    border-radius:5px;
+    background:#00B266;
+    background: -webkit-linear-gradient(#00B266,  #00293D);
+    background: linear-gradient(#00B266  #00293D);
+    width:350px;
+    height:575px;
+}
+.main{
+    background-color:black;
+}
+
+#wordHeader{
+    width:325px;
+    height:100px;
+    padding-top:5px;
+    border:10px teal groove;
+    background-color:#008799;
+    
+}
+
+.outputs{
+	height:325px;
+	width:325px;
+	font-size:30px;
+	border:5px yellow groove;
+	margin-right:auto;
+	margin-left:auto;
+	margin-top:10px;
+}
+
+
+.setup{
+}
+
+#gameScreen {
+	display:none;
+}
+
+#fightSystemButtons {
+	display:none;
+}
+
+#squareInput {
+    display:none;
+    border:groove 2.5px black;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:50px;
+    font-family:'Press Start 2P', cursive;
+    height:75px;
+    width:125px;
+    font-size:30px;
+    text-align:center;
+    
+}
+
+#playGameOutputs {
+    height:480px;
+}
+
+#playerScreenButtons {
+    display:none;
+}
+
+#output {
+    color:white;
+    margin-top:20px;
+    margin-bottom:5px;
+}
+
+#inventoryButton {
+    display:none;
+    width:150px;
+    height:40px;
+}
+
+#nextPlayerButton {
+    display:none;
+    width:125px;
+    height:50px;
+}
+
