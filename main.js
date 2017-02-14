@@ -678,16 +678,14 @@ function deadlyBerry(){
     answerButton2.style.display = "none";
     answerButton2.removeEventListener("click", smartChoiceBerry, false);
     var xNum = randNum(1,100);
-    if(xNum <= 50){
-       output.innerHTML = "You don't feel so good";
+    if (xNum <= 50) {
+       output.innerHTML = "You don't feel so good<br> -10HP";
        players[activePlayer].health -= 10;
-    }
-    else if(xNum > 50 && <= 90){
-        output.innerHTML = "Delicious and nutritious";
+    } else if (xNum > 50 && xNum <= 90) {
+        output.innerHTML = "Delicious and nutritious<br> +15HP";
         players[activePlayer].health += 15;   
-        }
-    else{
-        output.innerHTML = "The berries are berry powerful";
+    } else {
+        output.innerHTML = "The berries are berry powerful<br> +10HP and \n +2 moving for the next 2 turns.";
         players[activePlayer].health += 10;
         //need to add +2 moving for next 2 turns
     }
@@ -696,11 +694,11 @@ function deadlyBerry(){
 
 function smartChoiceBerry(){
     answerButton1.style.display = "none";
-    answerButton1.removeEventListener("click", deadlyBerry, false);
     answerButton2.style.display = "none";
+    answerButton1.removeEventListener("click", deadlyBerry, false);
     answerButton2.removeEventListener("click", smartChoiceBerry, false);
-    var xNum = randNum(1,100);
     
+    output.innerHTML = "You decide not to eat the berries."; 
     
     playerMenuDisplay();
     
@@ -716,11 +714,11 @@ function yummyMushroom(){
     if(xNum <= 50) {
         output.innerHTML = "Yummy mushrooms<br>+10 HP";
         players[activePlayer].health += 10;
-    } else if(xNum > 50 && <= 65) {
+    } else if(xNum > 50 && xNum <= 65) {
         output.innerHTML = "Your eyelids are getting heavy, you'll just rest rest your eyes for a moment...<br>+20 HP<br>lose a turn";
         players[activePlayer].health += 20;
         players[activePlayer].loseTurn = true;
-    } else if(xNum > 65 && <= 85) {
+    } else if(xNum > 65 && xNum <= 85) {
         output.innerHTML = "Ohh, you don't feel so well...<br>-4 HP";
         players[activePlayer].health -= 4;
     } else {
@@ -739,6 +737,12 @@ function noMushroom(){
     answerButton2.removeEventListener("click", noMushroom, false);
     
     var xNum = randNum(1,100);
+    if(xNum <= 5) {
+        output.innerHTML = "The mushroom releases the spores<br>-4 HP";
+        players[activePlayer].health -= 4;
+    } else {
+        output.innerHTML = "You put down the mushrooms and keep going";
+    }
     
     
     playerMenuDisplay();
@@ -837,7 +841,7 @@ function digGrave() {
         output.innerHTML = "You pull a muscle digging him up<br>-2 HP";
         players[activePlayer].health -= 2;
     } else {
-        output.innerHTML = "His Hand grasps a single golden goblet.<br>You gain a golden goblet."
+        output.innerHTML = "His Hand grasps a single golden goblet.<br>You gain a golden goblet.";
         //ADD TO THEIR INVENTORY LATER
     }
     
