@@ -227,3 +227,4 @@ function passiveBandit(){
     
     playerMenuDisplay();
 }
+
