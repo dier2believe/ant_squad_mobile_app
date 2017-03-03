@@ -96,15 +96,33 @@ function ramKraken() {
     answerButton3.removeEventListener("click", stabKraken, false);
     answerButton4.removeEventListener("click", fleeKraken, false);
     
+    var questNum = players[activePlayer].quests.indexOf("defKraken");
+    
     var xNum = randNum(1, 100);
     if(xNum <= 20) {
-        output.innerHTML = "Your volley bounces off harmlessly before the irritated Kraken smashes your ship with one mighty swing, you manage to hold onto a door to the shore.<br>Move to dock square.<br>-25 HP";
+        output.innerHTML = "Your volley bounces off harmlessly before the irritated Kraken smashes your ship with one mighty swing, you manage to hold onto a door to the shore.<br>Move to dock square.<br>lose a turn<br>-25 HP";
         players[activePlayer].health -= 25;
+        players[activePlayer].loseTurn = true;
     } else if(xNum >= 20 && xNum <= 60) {
-        output.innerHTML = "You fire a volley into  beast, the cannon tearing into the flesh. It lashes out in pain destroying your ship before collapsing.  You take the eye as a trophy as your ship slowly sinks.<br>Move to dock square.<br>-25 HP<br>Gain Eye of Kracken.";
+        output.innerHTML = "You fire a volley into  beast, the cannon tearing into the flesh. It lashes out in pain destroying your ship before collapsing.  You take the eye as a trophy as your ship slowly sinks.<br>Move to dock square.<br>lose a turn<br>-25 HP<br>Gain Eye of Kracken.";
+        players[activePlayer].inventory.push("eye of kraken");
         players[activePlayer].health -= 25;
+        players[activePlayer].loseTurn = true;
+        
+        if(questNum != -1) {
+            players[activePlayer].quests.splice(questNum, 1);
+            output.innerHTML += "<br>You completed your quest to defeat the Kraken!";
+            // Gain item
+        }
     } else {
         output.innerHTML = "You ram your ship into the beast, driving the bowsprit into the flesh, straight through its heart. It collapses silently. You solemnly take its eye as a trophy.<br>Gain Eye of Kraken.";
+        players[activePlayer].inventory.push("eye of kraken");
+        
+        if(questNum != -1) {
+            players[activePlayer].quests.splice(questNum, 1);
+            output.innerHTML += "<br>You completed your quest to defeat the Kraken!";
+            // Gain item
+        }
     }
     
     playerMenuDisplay();
@@ -121,15 +139,33 @@ function cannonKraken() {
     answerButton3.removeEventListener("click", stabKraken, false);
     answerButton4.removeEventListener("click", fleeKraken, false);
     
+    var questNum = players[activePlayer].quests.indexOf("defKraken");
+    
     var xNum = randNum(1, 100);
     if(xNum <= 20) {
-        output.innerHTML = "Your volley bounces off harmlessly before the irritated Kraken smashes your ship with one mighty swing, you manage to hold onto a door to the shore.<br>Move to dock square.<br>-25 HP";
+        output.innerHTML = "Your volley bounces off harmlessly before the irritated Kraken smashes your ship with one mighty swing, you manage to hold onto a door to the shore.<br>Move to dock square.<br>lose a turn<br>-25 HP";
         players[activePlayer].health -= 25;
+        players[activePlayer].loseTurn = true;
     } else if(xNum > 20 && xNum <= 60) {
-        output.innerHTML = "You fire a volley into  beast, the cannon tearing into the flesh. It lashes out in pain destroying your ship before collapsing.  You take the eye as a trophy as your ship slowly sinks.<br>Move to dock square.<br>-25 HP<br>Gain Eye of Kracken.";
+        output.innerHTML = "You fire a volley into  beast, the cannon tearing into the flesh. It lashes out in pain destroying your ship before collapsing.  You take the eye as a trophy as your ship slowly sinks.<br>Move to dock square.<br>Lose a turn<br>-25 HP<br>Gain Eye of Kracken.";
         players[activePlayer].health -= 25;
+        players[activePlayer].loseTurn = true;
+        players[activePlayer].inventory.push("eye of kraken");
+        
+        if(questNum != -1) {
+            players[activePlayer].quests.splice(questNum, 1);
+            output.innerHTML += "<br>You completed your quest to defeat the Kraken!";
+            // Gain item
+        }
     } else {
         output.innerHTML = "You ram your ship into the beast, driving the bowsprit into the flesh, straight through its heart. It collapses silently. You solemnly take its eye as a trophy.<br>Gain Eye of Kraken.";
+        players[activePlayer].inventory.push("eye of kraken");
+        
+        if(questNum != -1) {
+            players[activePlayer].quests.splice(questNum, 1);
+            output.innerHTML += "<br>You completed your quest to defeat the Kraken!";
+            // Gain item
+        }
     }
     
     playerMenuDisplay();
@@ -145,6 +181,8 @@ function stabKraken() {
     answerButton3.removeEventListener("click", stabKraken, false);
     answerButton4.removeEventListener("click", fleeKraken, false);
     
+    var questNum = players[activePlayer].quests.indexOf("defKraken");
+    
     var xNum = randNum(1, 100);
     if(xNum <= 50) {
         output.innerHTML = "As you leap from your boat yelling, you feel a sharp pain in your back as you are accelerated towards the water. You blackout as you body connects with the frigid water, after some time you wake up on your ship safely at the dock..<br>Lose a turn<br>-25 HP";
@@ -153,9 +191,19 @@ function stabKraken() {
     } else if(xNum > 50 && xNum <= 80) {
         output.innerHTML = "As you leap from your boat yelling, you feel a sharp pain in your back as you are accelerated towards your boat, it is utterly destroyed. You blackout as you crash through the floor and wake up on a piece of debris on the beach.<br>Lose a turn.";
         players[activePlayer].loseTurn = true;
-        //go to random beach square
+        
+        /*global beach*/
+        var squareToMove = randNum(0, beach.squares.length - 1);
+        output.innerHTML += "<br>Go to " + squareToMove + ".";
     } else {
-        output.innerHTML = "You leap through the air, you deftly manage to slice through an incoming tentacle. Before Grasping the creatures slimy flesh and moving in. You heave your arm back before thrusting your weapon into its eye. The foul beast screams as you leap back with your new trophy. You land on your ship.";
+        output.innerHTML = "You leap through the air, you deftly manage to slice through an incoming tentacle. Before Grasping the creatures slimy flesh and moving in. You heave your arm back before thrusting your weapon into its eye. The foul beast screams as you leap back with your new trophy. You land on your ship.<br>Gain Eye of Kraken";
+        players[activePlayer].inventory.push("eye of kraken");
+        
+        if(questNum != -1) {
+            players[activePlayer].quests.splice(questNum, 1);
+            output.innerHTML += "<br>You completed your quest to defeat the Kraken!";
+            // Gain item
+        }
     }
     
     playerMenuDisplay();
