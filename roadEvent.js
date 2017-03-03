@@ -51,6 +51,7 @@ function vowWidow() {
     answerButton2.removeEventListener("click", ignoreWidow, false);
     
     output.innerHTML = "You vow to the widow that you will defeat the monster and avenge her husband<br>You gain a quest:<br>Defeat the Kraken";
+    players[activePlayer].quests.push("defKraken");
     
     playerMenuDisplay();
     
@@ -75,6 +76,7 @@ function talkOldMan() {
     answerButton2.removeEventListener("click", ignoreOldMan, false);
     
     output.innerHTML = '"Please, the fire dragon to the north is causing us great trouble. . ."<br>You gain a quest:<br>"Defeat the Fire Dragon"';
+    players[activePlayer].quests.push("defFireDragon");
     
     playerMenuDisplay();
 }
@@ -115,7 +117,7 @@ function manholeEvent() {
         output.innerHTML = "You smell something fowl.";
     }
     else{
-        output.innerHTML = "Find a note, telling you of a more refined base.";
+        output.innerHTML = "Find a note, telling you of a more refined sanctuary.";
         //give a location
     }
     playerMenuDisplay();
@@ -138,4 +140,3 @@ function manHoleFlee(){
     }
     playerMenuDisplay();
 }
-
