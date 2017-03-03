@@ -34,6 +34,7 @@ function desertEvent() {
             break;
     }
 }
+
 function approachOasis() {
     answerButton1.style.display = "none";
     answerButton2.style.display = "none";
@@ -69,8 +70,10 @@ function restTired() {
     answerButton2.removeEventListener("click", kMovingTired, false);
     var xNum = randNum(1, 100);
     if(xNum <= 10) {
-        output.innerHTML = "A rattlesnake crawls out from under the rock and bites you.<br>-2 HP";
+        output.innerHTML = "A rattlesnake crawls out from under the rock and bites you.<br>-2 HP for the next 3 turns";
         players[activePlayer].health -= 2;
+        players[activePlayer].hurtEvents.push("snakeBite");
+        players[activePlayer].hurtEventsTurnNum.push(3);
     } else {
         output.innerHTML = "You rest up<br>+2 HP";
         players[activePlayer].health += 2;
