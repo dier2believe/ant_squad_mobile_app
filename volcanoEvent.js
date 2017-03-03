@@ -106,9 +106,16 @@ function standGroundDragon() {
         players[activePlayer].health -= 30;
     } else {
         output.innerHTML = "You make a deliberate strike, chopping the beast's tail clean off, it flies away in immense pain.";
+        
+        var questNum = players[activePlayer].quests.indexOf("defFireDragon");
+        if(questNum != -1) {
+            players[activePlayer].quests.splice(questNum, 1);
+            output.innerHTML += "<br>You completed your quest to defeat the Fire Dragon!";
+            // Gain something
+        }
+        
     }
     
     playerMenuDisplay();
     
 }
-
