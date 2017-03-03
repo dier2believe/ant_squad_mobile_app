@@ -9,6 +9,10 @@
 
 body{
     background-image:url("assets/background.png");
+    width:375px;
+    height:600px;
+    margin-left:auto;
+    margin-right:auto;
 }
 #title{
     font-family:'Press Start 2P', cursive;
@@ -90,6 +94,7 @@ body{
     color:white;
     margin-top:20px;
     margin-bottom:5px;
+    font-size:25px;
 }
 
 #inventoryButton {
@@ -104,3 +109,8 @@ body{
     height:50px;
 }
 
+#mainMenuButton {
+    display:none;
+    width:125px;
+    height:50px;
+}
