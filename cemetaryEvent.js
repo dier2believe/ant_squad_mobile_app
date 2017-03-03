@@ -13,7 +13,7 @@
 
 function cemetaryEvent() {
     
-    output.innerHTML = "You feel a chill in the air as you by the sullen graves.";
+    output.innerHTML = "You feel a chill in the air as you walk by the eerie graves.";
     
     playerMenuDisplay();
 }
