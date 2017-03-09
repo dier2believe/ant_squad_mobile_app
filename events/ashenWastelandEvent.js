@@ -27,6 +27,25 @@ function ashenWastelandEvent() {
             answerButton2.addEventListener("click", approachFigure, false);
             answerButton3.addEventListener("click", ignoreFigure, false);
             break;
+        case "ashMan":
+            output.innerHTML = "As you're walking around the land of ash, a man of ash suddenly bursts from the ground.";
+            answerButton1.innerHTML = "Fight the Ashman";
+            answerButton2.innerHTML = "Run Away";
+            answerButton1.style.display = "block";
+            answerButton2.style.display = "block";
+            answerButton1.addEventListener("click", fightAsh, false);
+            answerButton2.addEventListener("click", fleeAsh, false);
+
+            break;
+        case "ashHopper":
+             output.innerHTML = " As you're walking, a big looking cricket, pops out of the ground covered in ash.";
+            answerButton1.innerHTML = "Fight the Ash Hopper";
+            answerButton2.innerHTML = "Run Away";
+            answerButton1.style.display = "block";
+            answerButton2.style.display = "block";
+            answerButton1.addEventListener("click", fightAshHop, false);
+            answerButton2.addEventListener("click", fleeAshHop, false);
+            break;
     }
 }
 
@@ -57,10 +76,10 @@ function hailFigure() {
 function approachFigure() {
     answerButton1.style.display = "none";
     answerButton2.style.display = "none";
-    answerButton3.style.display = "none";
+
     answerButton1.removeEventListener("click", hailFigure, false);
     answerButton2.removeEventListener("click", approachFigure, false);
-    answerButton3.removeEventListener("click", ignoreFigure, false);
+    
     
     var xNum = randNum(1, 100);
     if(xNum <= 25) {
@@ -82,10 +101,10 @@ function approachFigure() {
 function ignoreFigure() {
     answerButton1.style.display = "none";
     answerButton2.style.display = "none";
-    answerButton3.style.display = "none";
+    
     answerButton1.removeEventListener("click", hailFigure, false);
     answerButton2.removeEventListener("click", approachFigure, false);
-    answerButton3.removeEventListener("click", ignoreFigure, false);
+  
     
     var xNum = randNum(1, 100);
     if(xNum <= 90) {
@@ -98,4 +117,75 @@ function ignoreFigure() {
     }
     
     playerMenuDisplay();
+}
+// not done yet
+function fightAsh(){
+    answerButton1.style.display = "none";
+    answerButton2.style.display = "none";
+   
+    answerButton1.removeEventListener("click", fightAsh, false);
+    answerButton2.removeEventListener("click", fleeAsh, false);
+    
+    
+    var xNum = randNum(1, 100);
+   if(xNum <= 40) {
+        output.innerHTML = "You run up and block the ashman's attack and slice threw him with ease.<br> +2 Gold";
+        players[activePlayer].money += 2;
+    } else if(xNum > 40 && xNum <= 70) {
+        output.innerHTML = "The ashman quickly shoots a fireball at you and you get hit by it, costing the ashman’s life to fade.<br> losing 3 health for 1 round";
+        players[activePlayer].health -= 3;
+        //add burning damage 
+        players[activePlayer].hurtEventsTurnNum.push(3);
+    } else {
+        output.innerHTML = "The ashman runs up and blinds you with ash. He stabs you and explodes.<br> -4 Health and -3 health for 3 rounds";
+        players[activePlayer].health -= 4;
+        //add burning damage for 3 turns -3 health
+    }
+    
+    playerMenuDisplay();
+}
+function fleeAsh(){
+    answerButton1.style.display = "none";
+    answerButton2.style.display = "none";
+
+    answerButton1.removeEventListener("click", fightAsh, false);
+    answerButton2.removeEventListener("click", fleeAsh, false);
+    output.innerHTML = "You turn around and sprint away from the ashman.";
+    
+    playerMenuDisplay();
+}
+
+function fightAshHop(){
+    answerButton1.style.display = "none";
+    answerButton2.style.display = "none";
+   
+    answerButton1.removeEventListener("click", fightAshHop, false);
+    answerButton2.removeEventListener("click", fleeAshHop, false);
+    
+    
+    var xNum = randNum(1, 100);
+    if(xNum <= 70) {
+        output.innerHTML = "You stomp on the hopper, squashing it to death.";
+        players[activePlayer].money += 2;
+    } else {
+        output.innerHTML = " As you try quickly stomp on the hopper, the cricket jumps on you biting you in the chest.<br> -5HP";
+        players[activePlayer].health -= 5;
+        //add burning damage 
+    
+    } 
+    
+    playerMenuDisplay();
+}
+function fleeAshHop(){
+    answerButton1.style.display = "none";
+    answerButton2.style.display = "none";
+   
+    answerButton1.removeEventListener("click",fightAshHop , false);
+    answerButton2.removeEventListener("click",fleeAshHop, false);
+   
+    output.innerHTML = "You freakout and run away from the hopper.";
+    
+    
+    playerMenuDisplay();
+
 }
